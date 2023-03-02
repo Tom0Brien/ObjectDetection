@@ -20,7 +20,7 @@ To use this script, you will need to modify the `url` variable in the script to 
 
 Once you have modified the `url` variable, you can run the script using the following command:
 
-`python human_detection.py`
+`python main.py`
 
 
 This will open the video stream and start detecting humans in real-time. To exit the script, press the 'q' key.
