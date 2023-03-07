@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 # Define the URL of the video stream
-url = 'udp://192.168.0.2:1234'
+url = 'udp://localhost:1234'
 
 # Load the pre-trained YOLOv3 model and configure the network
 model = cv2.dnn.readNetFromDarknet('yolov3.cfg', 'yolov3.weights')
@@ -34,7 +34,7 @@ while True:
         break
 
     # Detect humans in the frame using the YOLOv3 model
-    blob = cv2.dnn.blobFromImage(frame, 1/255.0, (416, 416), swapRB=True, crop=False)
+    blob = cv2.dnn.blobFromImage(frame, 1/255.0, (128, 128), swapRB=True, crop=False)
     model.setInput(blob)
     output_layers = model.getUnconnectedOutLayersNames()
     layer_outputs = model.forward(output_layers)
@@ -64,8 +64,8 @@ while True:
 
     # Draw the human detections on the frame
     for x, y, w, h, conf in humans:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
-        cv2.putText(frame, "Human", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+        cv2.putText(frame, "Human", (x, y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (255, 0, 0), 2)
 
     # Show the frame in a window
     cv2.imshow('Video Stream', frame)
